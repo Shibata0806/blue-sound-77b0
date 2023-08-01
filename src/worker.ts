@@ -21,8 +21,8 @@ export default {
 			},
 		};
 		// You can get pretty far with simple logic like if/switch-statements
-		const urls = ['/my'];
-		if (urls.includes(url.pathname)) {
+		const regex = /^(\/my|\/ranking|\/_next\/.*)$/;
+		if (regex.test(url.pathname)) {
 			const serverUrl = 'http://localhost:3000/' + url.pathname;
 			const response = await fetch(serverUrl, init);
 			const results = await gatherResponse(response);

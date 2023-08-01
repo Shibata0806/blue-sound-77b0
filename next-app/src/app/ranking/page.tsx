@@ -1,13 +1,13 @@
 'use client';
 import Link from 'next/link';
 
-export default function MyPage() {
+export default function RankingPage() {
 	const clickFunc = () => {
-		console.log('MyPage');
+		console.log('RankingPage');
 	};
 	return (
 		<div>
-			this is myPage running on nextjs
+			this is rankingPage running on nextjs
 			<button onClick={clickFunc}>clickFunc</button>
 			<li>
 				<p>NextApp</p>
