@@ -15,9 +15,11 @@ export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		// You'll find it helpful to parse the request.url string into a URL object. Learn more at https://developer.mozilla.org/en-US/docs/Web/API/URL
 		const url = new URL(request.url);
+
+		const type = getMimeTypeFromUrl(request.url);
 		const init = {
 			headers: {
-				'content-type': 'text/html;charset=UTF-8',
+				'content-type': `${type};charset=UTF-8`,
 			},
 		};
 		// You can get pretty far with simple logic like if/switch-statements
@@ -64,5 +66,31 @@ async function gatherResponse(response: Response) {
 		return response.text();
 	} else {
 		return response.text();
+	}
+}
+
+type MimeType = 'text/html' | 'text/css' | 'application/javascript' | 'image/jpeg' | 'image/png' | 'application/json' | 'text/plain';
+
+function getMimeTypeFromUrl(url: string): MimeType | null {
+	const extension = url.split('.').pop();
+
+	switch (extension) {
+		case 'html':
+			return 'text/html';
+		case 'css':
+			return 'text/css';
+		case 'js':
+			return 'application/javascript';
+		case 'jpeg':
+		case 'jpg':
+			return 'image/jpeg';
+		case 'png':
+			return 'image/png';
+		case 'json':
+			return 'application/json';
+		case 'txt':
+			return 'text/plain';
+		default:
+			return null;
 	}
 }
