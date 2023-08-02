@@ -2,13 +2,9 @@
 import Link from 'next/link';
 
 export default function MyPage() {
-	const clickFunc = () => {
-		console.log('MyPage');
-	};
 	return (
 		<div>
 			this is myPage running on nextjs
-			<button onClick={clickFunc}>clickFunc</button>
 			<li>
 				<p>NextApp</p>
 				<Link href="/my">link: /my</Link>
